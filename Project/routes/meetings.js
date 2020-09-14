@@ -98,4 +98,22 @@ Router.patch( '/:id', ( req, res ) => {
         res.send('No criteria given!')
     }
 });
+
+Router.delete('/:id', async (req, res) => {
+    const meetingId = req.params.id
+    const userId = req.query.id
+    const attendees = await Meeting.findById(meetingId, {attendees: 1, _id: 0}).exec()
+    if (attendees.length === 0) {
+
+        Meeting.findByIdAndRemove(meetingId, (error, result) => {
+            if(error) {
+                return res.status(500).send(error.message)
+            }
+            return res.send(result)
+        })
+    }
+    else {
+        return res.send()
+    }
+})
 module.exports = Router

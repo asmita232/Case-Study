@@ -1,0 +1,15 @@
+{
+    "name": "Bootcamp",
+    "short-name": "Bootcamp",
+    "date": "2020-09-15",
+    "start": {
+        "hours": 10,
+        "minutes": 15
+    },
+    "attendee": [
+            
+            "Leo@gamil.com",
+            "Laser@gamil.com",
+            "johnCena@gamil.com"
+    ]
+}

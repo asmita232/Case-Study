@@ -5,10 +5,14 @@ const { User } = require('../models/User')
 
 Router.get('/', (req, res) => {
 
-    const {date = "All", searchTerm} = req.body
+    const {date = "All", id, searchTerm} = req.query
+
+    const currentDate = `${(new Date()).getFullYear()}-${(new Date()).getMonth()}-${(new Date()).getDate()}`
+    console.log(currentDate)
+
     
     try {
-        const data = Meeting.find()
+        const data = Meeting.find({})
         .exec((error, result) => {
             if(error) {
                 console.log(error)

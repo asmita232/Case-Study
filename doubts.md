@@ -1,0 +1,1 @@
+- creating index to attendees in meeting entity does not allow adding same user to different meetings

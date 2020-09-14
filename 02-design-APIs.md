@@ -44,7 +44,7 @@ GET/POST/PATCH/PUT/DELETE /endpoint
     - eg localhost:3000/meetings/:meetingid?action=add_attendee&id=userEmailId
 
 - Excusing yourself from the meeting
-    - PATCH /meetings/:meetingid?action=remove_yourself
+    - PATCH /meetings/:meetingid?action=execuse_yourself
     - Temporary query param: email. We set the urlencoded form of ?email=jane.doe@example.com
 
 - Adding meeting

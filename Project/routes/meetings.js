@@ -2,27 +2,110 @@ const express = require('express')
 const Router = express.Router()
 const { Meeting } = require('../models/Meeting')
 const { User } = require('../models/User')
+const { getDate, getCurrentDate } = require('../utility')
 
-Router.get('/', (req, res) => {
+Router.get('/', async (req, res) => {
 
-    const {date = "All", id, searchTerm} = req.query
-
-    const currentDate = `${(new Date()).getFullYear()}-${(new Date()).getMonth()}-${(new Date()).getDate()}`
-    console.log(currentDate)
-
-    
-    try {
-        const data = Meeting.find({})
-        .exec((error, result) => {
+    let {date = "All", id, search} = req.query 
+    let eId = null
+        User.findById(id,{emailId: 1, _id: 0}, (error, data) => {
             if(error) {
                 console.log(error)
                 return res.send(error)
             }
-            res.send(result)
+            console.log(data)
+            const currentDate = getCurrentDate()
+            console.log(currentDate)
+
+            let searchCriteria = {
+                $or: [
+                    {name: new RegExp( search, "i" )},
+                    {description: new RegExp( search, "i" )},
+                    {shortName: new RegExp( search, "i" )},
+                ],
+                attendees: data.emailId
+            }
+
+            console.log('searchCriteria', searchCriteria)
+
+            switch(searchCriteria.date) {
+
+                case 'PRESENT':
+                    searchCriteria.date = currentDate
+                    break
+        
+                case 'PAST': 
+                    searchCriteria.date = {
+                        $lt: currentDate
+                    }
+                    break
+        
+                case 'UPCOMING': 
+                    searchCriteria.date = {
+                        $gt: currentDate
+                    }
+                    break
+        
+                default:
+                    break
+            }
+
+            Meeting.find(searchCriteria,(error, result) => {
+                if(error) {
+                    console.log(error)
+                    return res.send(error)
+                }
+                return res.send(result)
         })
-    }catch(error) {
-        console.log(error)
-    }
+    
+
+        })
+        // console.log('email-id just after fetch',eId)
+
+    // } catch(error) {
+    //     return res.status(500).send(error.message)
+    // }
+
+    // console.log(eId)
+
+    
+
+    /**
+     * { $or : [{name: /Catchup/ }, {description:/sit/} ] }
+     * 
+     * below query works
+     * db.meetings.aggregate([ {$match: {date:  "2020-17-20"}},{$match: {$or : [{name: /Catchup/ }, {description:/sit/}]}} ]).pretty()
+     */
+
+    // switch(searchCriteria.date) {
+
+    //     case 'PRESENT':
+    //         searchCriteria.date = currentDate
+    //         break
+
+    //     case 'PAST': 
+    //         searchCriteria.date = {
+    //             $lt: currentDate
+    //         }
+    //         break
+
+    //     case 'UPCOMING': 
+    //         searchCriteria.date = {
+    //             $gt: currentDate
+    //         }
+    //         break
+
+    //     default:
+    //         break
+    // }
+    // Meeting.find(searchCriteria,(error, result) => {
+    //         if(error) {
+    //             console.log(error)
+    //             return res.send(error)
+    //         }
+    //         return res.send(result)
+    // })
+
 })
 
 

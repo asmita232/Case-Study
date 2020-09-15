@@ -4,7 +4,13 @@ const User = mongoose.model('User')
 // const User = require('../models/User')
 const Router = express.Router()
 
-Router.get('/:id', (req, res) => {
+/**
+ * req.params - 
+ * req.qurey - 
+ * authorization - true
+ * res - user[]
+ */
+Router.get('/', (req, res) => {
     User.find().exec((error, data) => {
         if(error) {
             return res.status(500).send(error.message)
@@ -14,7 +20,31 @@ Router.get('/:id', (req, res) => {
     })
 })
 
-Router.post('/:id', (req, res) => {
+/**
+ * req.params - id - userId
+ * req.query - 
+ * Authorization - true
+ * res - user
+ */
+Router.get('/:id', (req, res) => {
+    const userId = req.params.id
+    User.findById(userId).exec((error, data) => {
+        if(error) {
+            return res.status(500).send(error.message)
+        }
+        res.send(data)
+
+    })
+})
+
+/**
+ * req.params - id - userId
+ * req.query - 
+ * req.body - emailId, password, name
+ * Authorization - false
+ * res - newUser
+ */
+Router.post('/', (req, res) => {
 
     const newUser = req.body
     if(!newUser){

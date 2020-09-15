@@ -2,7 +2,7 @@ const express = require('express')
 const { mongo } = require('mongoose')
 const {Meeting} = require('../models/Meeting')
 const {User} = require('../models/User')
-
+const { authenticate } = require('../utils/auth')
 const Router = express.Router()
 
 function getCurrentDate() {
@@ -21,6 +21,8 @@ function getCurrentDate() {
     return currDate
     
 }
+
+Router.get('/', authenticate)
 Router.get('/', async (req, res) => {
 
     let {date, id} = req.query
@@ -49,5 +51,8 @@ Router.get('/', async (req, res) => {
         })
    
 })
+
+
+// Router.get('/:id',)
 
 module.exports = Router

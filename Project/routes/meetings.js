@@ -3,7 +3,18 @@ const Router = express.Router()
 const { Meeting } = require('../models/Meeting')
 const { User } = require('../models/User')
 const { getDate, getCurrentDate } = require('../utility')
+const { authenticate } = require('../utils/auth')
 
+
+/**
+ * req.params - 
+ * req.query - userId, search, date = { ALL, PRESENT, PAST, UPCOMING}
+ * req.body - 
+ * res - meeting[]
+ * Authorization - true
+ */
+
+Router.get('/', authenticate)
 Router.get('/', async (req, res) => {
 
     let {date = "All", id, search} = req.query 
@@ -26,7 +37,7 @@ Router.get('/', async (req, res) => {
                 attendees: data.emailId
             }
 
-            console.log('searchCriteria', searchCriteria)
+            // console.log('searchCriteria', searchCriteria)
 
             switch(searchCriteria.date) {
 
@@ -60,60 +71,28 @@ Router.get('/', async (req, res) => {
     
 
         })
-        // console.log('email-id just after fetch',eId)
-
-    // } catch(error) {
-    //     return res.status(500).send(error.message)
-    // }
-
-    // console.log(eId)
-
-    
-
-    /**
-     * { $or : [{name: /Catchup/ }, {description:/sit/} ] }
-     * 
-     * below query works
-     * db.meetings.aggregate([ {$match: {date:  "2020-17-20"}},{$match: {$or : [{name: /Catchup/ }, {description:/sit/}]}} ]).pretty()
-     */
-
-    // switch(searchCriteria.date) {
-
-    //     case 'PRESENT':
-    //         searchCriteria.date = currentDate
-    //         break
-
-    //     case 'PAST': 
-    //         searchCriteria.date = {
-    //             $lt: currentDate
-    //         }
-    //         break
-
-    //     case 'UPCOMING': 
-    //         searchCriteria.date = {
-    //             $gt: currentDate
-    //         }
-    //         break
-
-    //     default:
-    //         break
-    // }
-    // Meeting.find(searchCriteria,(error, result) => {
-    //         if(error) {
-    //             console.log(error)
-    //             return res.send(error)
-    //         }
-    //         return res.send(result)
-    // })
-
+       
 })
 
+/**
+ * req.params - 
+ * req.query - :id - userId
+ * req.body - name*, date*, startTime*, endTime*, description, shortName
+ * res - meeting[]
+ * Authorization - true
+ */
 
-Router.post('/', (req, res) => {
+Router.post('/', authenticate)
+Router.post('/', async (req, res) => {
 
     // if(req.body)
 
+    const userId = req.query.id
+    const { emailId } = await User.findById(userId,{emailId: 1, _id: 0}).exec()
+
+    console.log(emailId)
     const newMeeting = req.body
+    newMeeting.attendees.push(emailId)
     if(!newMeeting) {
         return res.send('Please enter meeting details')
     }
@@ -128,6 +107,7 @@ Router.post('/', (req, res) => {
     });
 })
 
+Router.patch('/:id', authenticate)
 Router.patch( '/:id', ( req, res ) => {
     const id = req.params.id; //meeting id
     const meeting = req.body;

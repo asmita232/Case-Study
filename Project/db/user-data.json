@@ -11,4 +11,40 @@
         "message": "Signed in sucessfully",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbElkIjoibWFyc2tzQGdhbWlsLmNvbSIsInVzZXJJZCI6IjVmNWZiMmMwYWYxNGY5NzNjNGQ2YmQxMSIsImlhdCI6MTYwMDE3MzI5MCwiZXhwIjoxNjAwMjU5NjkwfQ.amocgipFi90JDmKQ_zpSdaJeHQSYeNFa3FRYbdNO0a4"
     }
-}]
+},
+    {
+        "_id": "5f5fb2c0af14f973c4d6bd11",
+        "name": "Mark Doe",
+        "emailId": "marsks@gamil.com",
+        "password": "Abc@2345",
+        "__v": 0
+    },
+    {
+        "_id": "5f5fb2d9af14f973c4d6bd12",
+        "name": "Lata Mageshkar",
+        "emailId": "lata@gamil.com",
+        "password": "Abc@2345",
+        "__v": 0
+    },
+    {
+        "_id": "5f5fb2f0af14f973c4d6bd14",
+        "name": "Lata Mageshkar",
+        "emailId": "latam@gamil.com",
+        "password": "Abc@2345",
+        "__v": 0
+    },
+    {
+        "_id": "5f5fc398c6e9d455d48d2b71",
+        "name": "Jony jane",
+        "emailId": "jonney@yahoo.com",
+        "password": "Abc@2345",
+        "__v": 0
+    },
+    {
+        "_id": "5f5fe4b408d8229ce8705b26",
+        "name": "lankesh jane",
+        "emailId": "lankesh@gmail.com",
+        "password": "Abc@2345",
+        "__v": 0
+    }
+]

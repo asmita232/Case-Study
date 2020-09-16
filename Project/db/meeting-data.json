@@ -1,4 +1,4 @@
-{
+[{
     "name": "Bootcamp",
     "short-name": "Bootcamp",
     "date": "2020-09-15",
@@ -12,4 +12,106 @@
             "Laser@gamil.com",
             "johnCena@gamil.com"
     ]
-}
+},    {
+        "startTime": {
+            "hours": 10,
+            "minutes": 15
+        },
+        "endTime": {
+            "hours": 10,
+            "minutes": 30
+        },
+        "attendees": [
+            "lankesh@gmail.com",
+            "radheya@yahoo.com",
+            "amachupa@google.com",
+            "marsks@gamil.com"
+        ],
+        "_id": "5f6005ecd3dc798978a249a3",
+        "name": "Howdy_Modi",
+        "date": "2020-17-20",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti maiores modi, fugit debitis totam fuga eveniet facilis, impedit illo mollitia nihil, tempore consectetur atque hic ipsa! Nemo dignissimos eveniet magnam!",
+        "__v": 0
+    },
+    {
+        "startTime": {
+            "hours": 10,
+            "minutes": 15
+        },
+        "endTime": {
+            "hours": 10,
+            "minutes": 30
+        },
+        "attendees": [
+            "lankesh@gmail.com",
+            "radheya@yahoo.com",
+            "amachupa@google.com",
+            "marsks@gamil.com"
+        ],
+        "_id": "5f60ecbcfa8debb6c8a36cf0",
+        "name": "Howdy_Modi",
+        "date": "2020-17-20",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti maiores modi, fugit debitis totam fuga eveniet facilis, impedit illo mollitia nihil, tempore consectetur atque hic ipsa! Nemo dignissimos eveniet magnam!",
+        "__v": 0
+    },
+    {
+        "startTime": {
+            "hours": 10,
+            "minutes": 15
+        },
+        "endTime": {
+            "hours": 10,
+            "minutes": 30
+        },
+        "attendees": [
+            "lankesh@gmail.com",
+            "radheya@yahoo.com",
+            "amachupa@google.com",
+            "marsks@gamil.com"
+        ],
+        "_id": "5f60ecf7bbb33f5e68d0ab46",
+        "name": "Howdy_Modi",
+        "date": "2020-17-20",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti maiores modi, fugit debitis totam fuga eveniet facilis, impedit illo mollitia nihil, tempore consectetur atque hic ipsa! Nemo dignissimos eveniet magnam!",
+        "__v": 0
+    },
+    {
+        "startTime": {
+            "hours": 10,
+            "minutes": 15
+        },
+        "endTime": {
+            "hours": 10,
+            "minutes": 30
+        },
+        "attendees": [
+            "lankesh@gmail.com",
+            "radheya@yahoo.com",
+            "amachupa@google.com",
+            "marsks@gamil.com"
+        ],
+        "_id": "5f60f079b40884833076b4db",
+        "name": "Howdy_Modi",
+        "date": "2020-17-20",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti maiores modi, fugit debitis totam fuga eveniet facilis, impedit illo mollitia nihil, tempore consectetur atque hic ipsa! Nemo dignissimos eveniet magnam!",
+        "__v": 0
+    },
+    {
+        "startTime": {
+            "hours": 10,
+            "minutes": 15
+        },
+        "endTime": {
+            "hours": 10,
+            "minutes": 30
+        },
+        "attendees": [
+            "marsks@gamil.com"
+        ],
+        "_id": "5f60f0bac95e38b38c5ff172",
+        "name": "Howdy_Modi",
+        "date": "2020-17-20",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti maiores modi, fugit debitis totam fuga eveniet facilis, impedit illo mollitia nihil, tempore consectetur atque hic ipsa! Nemo dignissimos eveniet magnam!",
+        "__v": 0
+    }
+]

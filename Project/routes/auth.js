@@ -38,7 +38,8 @@ Router.post('/', (req, res) => {
             res.status(200).json({
                 message: 'Signed in sucessfully',
                 token: token.toString(),
-                emailId: result.email
+                emailId: result.email,
+                id: result._id
             })
         });
 

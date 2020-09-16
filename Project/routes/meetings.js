@@ -12,12 +12,13 @@ const { authenticate } = require('../utils/auth')
  * req.body - 
  * res - meeting[]
  * Authorization - true
+ * sample request - localhost:4000/meetings?id=5f5fb2d9af14f973c4d6bd12&date=PRESENT
  */
 
 Router.get('/', authenticate)
 Router.get('/', async (req, res) => {
 
-    let {date = "All", id, search} = req.query 
+    let {date = "PAST", id, search} = req.query 
     let eId = null
         User.findById(id,{emailId: 1, _id: 0}, (error, data) => {
             if(error) {
@@ -39,7 +40,7 @@ Router.get('/', async (req, res) => {
 
             // console.log('searchCriteria', searchCriteria)
 
-            switch(searchCriteria.date) {
+            switch(date) {
 
                 case 'PRESENT':
                     searchCriteria.date = currentDate

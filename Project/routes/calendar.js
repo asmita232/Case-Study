@@ -22,15 +22,26 @@ function getCurrentDate() {
     
 }
 
-Router.get('/', authenticate)
+// Router.get('/', authenticate)
 Router.get('/', async (req, res) => {
 
     let {date, id} = req.query
 
+    if(!id) {
+        return res.status(400).json({
+            message: "provide id of user"
+        })
+    }
+
+    if(!date) {
+        console.log('getCurrentDate()',getCurrentDate())
+        date = getCurrentDate()
+    }
+
     const currentDate = getCurrentDate()    
     // (new Date()).toISOString().split('T')[0]
     
-    date = date?date: currentDate
+    // date = date?date: currentDate
     console.log('date after check = ', date)
 
     
@@ -43,11 +54,11 @@ Router.get('/', async (req, res) => {
             attendees: emailId
         },(error, result) => {
             if(error) {
-                // console.log(error)
+                console.log(error)
                 return res.send(error)
             }
-            // console.log(result)
-            res.send(result)
+            console.log('result',result)
+            res.json(result)
         })
    
 })

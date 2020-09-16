@@ -6,10 +6,12 @@ const usersRouter = require('./routes/users')
 const meetingsRouter = require('./routes/meetings')
 const calendarRouter = require('./routes/calendar')
 const authRouter = require('./routes/auth')
-const PORT = process.env.PORT || 3000
+const cors = require('cors')
+const PORT = process.env.PORT || 4000
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use('/',homeRouter)
 app.use('/login', authRouter)

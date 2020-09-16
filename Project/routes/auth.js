@@ -8,6 +8,13 @@ const jwt = require('jsonwebtoken')
 
 const Router = express.Router()
 
+/**
+ * req.param - 
+ * req.query - 
+ * req.body - emailId*,password*
+ * res - message, token, emailId, id
+ */
+
 Router.post('/', (req, res) => {
 
     const credentials = req.body
@@ -22,6 +29,11 @@ Router.post('/', (req, res) => {
 
         // res.send(result)
         console.log('result of findOne',result)
+        if(result === null) {
+            return res.status(404).json({
+                message: "User not found!"
+            })
+        }
         const claims = { 
             emailId: result.emailId ,
             userId: result._id

@@ -19,7 +19,7 @@ function getDate({year, month, date}) {
     year = year.toString()
 
     let currDate = year + "-" + month + "-" + date
-    console.log(currDate)
+    // console.log(currDate)
     return currDate
 }
 

@@ -15,32 +15,46 @@ const { authenticate } = require('../utils/auth')
  * sample request - localhost:4000/meetings?id=5f5fb2d9af14f973c4d6bd12&date=PRESENT
  */
 
-Router.get('/', authenticate)
+// Router.get('/', authenticate)
 Router.get('/', async (req, res) => {
 
-    let {date = "PAST", id, search} = req.query 
-    let eId = null
-        User.findById(id,{emailId: 1, _id: 0}, (error, data) => {
+    let {dateCriteria, id, search} = req.query 
+    if(!dateCriteria || dateCriteria === 'undefined') {
+        dateCriteria = "ALL"
+    }
+    if(!search || search === 'undefined') {
+        search = undefined
+    }
+        User.findById(id,{emailId: 1, _id: 0}, (error, userData) => {
             if(error) {
                 console.log(error)
                 return res.send(error)
             }
-            console.log(data)
+            // console.log(userData)
             const currentDate = getCurrentDate()
-            console.log(currentDate)
+            // console.log(currentDate)
 
-            let searchCriteria = {
-                $or: [
-                    {name: new RegExp( search, "i" )},
-                    {description: new RegExp( search, "i" )},
-                    {shortName: new RegExp( search, "i" )},
-                ],
-                attendees: data.emailId
+            let searchCriteria
+            if(search) {
+                searchCriteria = {
+                    $or: [
+                        {name: new RegExp( search, "i" )},
+                        {description: new RegExp( search, "i" )},
+                        {shortName: new RegExp( search, "i" )},
+                    ],
+                    attendees: userData.emailId
+                }
             }
+            else {
+                searchCriteria = {
+                    attendees: userData.emailId
+                }
+            }
+            
 
             // console.log('searchCriteria', searchCriteria)
-
-            switch(date) {
+            // console.log('dateCriteria before switch', dateCriteria)
+            switch(dateCriteria) {
 
                 case 'PRESENT':
                     searchCriteria.date = currentDate
@@ -61,6 +75,8 @@ Router.get('/', async (req, res) => {
                 default:
                     break
             }
+
+            // console.log('searchCriteria before find', searchCriteria)
 
             Meeting.find(searchCriteria,(error, result) => {
                 if(error) {

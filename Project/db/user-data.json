@@ -5,11 +5,14 @@
 }
 ,
 {
+ "credentials":"asmitachavan232@gmail.com Fried@12P Friedo"
+},
+{
     "emailId": "marsks@gamil.com",
        "password": "Abc@2345",
        "token": {
         "message": "Signed in sucessfully",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbElkIjoibWFyc2tzQGdhbWlsLmNvbSIsInVzZXJJZCI6IjVmNWZiMmMwYWYxNGY5NzNjNGQ2YmQxMSIsImlhdCI6MTYwMDE3MzI5MCwiZXhwIjoxNjAwMjU5NjkwfQ.amocgipFi90JDmKQ_zpSdaJeHQSYeNFa3FRYbdNO0a4"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbElkIjoibWFyc2tzQGdhbWlsLmNvbSIsInVzZXJJZCI6IjVmNWZiMmMwYWYxNGY5NzNjNGQ2YmQxMSIsImlhdCI6MTYwMDI2NDEyOSwiZXhwIjoxNjAwMzUwNTI5fQ.Z2K00x7oaf8UmjXyFt2H4NvfdO_4aGhGmaez7JjXJo4"
     }
 },
     {

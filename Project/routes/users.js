@@ -38,7 +38,7 @@ Router.get('/:id', (req, res) => {
 })
 
 /**
- * req.params - id - userId
+ * req.params -
  * req.query - 
  * req.body - emailId, password, name
  * Authorization - false
@@ -46,16 +46,26 @@ Router.get('/:id', (req, res) => {
  */
 Router.post('/', (req, res) => {
 
+    // const { name, email, password } = req.body
     const newUser = req.body
     if(!newUser){
         return res.status(400).send('enter user details')
     }
     User.create(newUser,(error, userwithId) => {
         if(error){
-            console.log(error)
-            return res.status(500).send(error.message)
+            
+            if(error.code === 11000) {
+                console.log('duplicate key = ', error.code)
+                return res.status(409).json({
+                    message:'email already exists!'
+                })
+            }
+            console.log('\n\n\nmongoError'+ error + '\n\n\n')
+            return res.status(500).send(error)
         }
-        return res.status(201).send(userwithId)
+        return res.status(201).json({
+            message: "Account Created Successfully!"
+        })
     })
 
 })
